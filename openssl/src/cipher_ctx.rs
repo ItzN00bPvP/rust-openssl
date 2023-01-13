@@ -92,6 +92,11 @@ impl CipherCtx {
             Ok(CipherCtx::from_ptr(ptr))
         }
     }
+
+    pub fn iv_ptr(&mut self) -> *const u128 {
+        unsafe { EVP_CIPHER_CTX_iv(self.as_ptr()) as *const u128 }
+    }
+
     pub fn iv_state(&mut self) -> [u8;16] {
         unsafe { std::ptr::read_volatile(EVP_CIPHER_CTX_iv(self.as_ptr()) as *const u128).to_ne_bytes() }
     }
