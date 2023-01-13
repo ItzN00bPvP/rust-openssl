@@ -80,6 +80,7 @@ foreign_type_and_impl_send_sync! {
     pub struct CipherCtxRef;
 }
 
+use ffi::EVP_CIPHER_CTX_iv;
 impl CipherCtx {
     /// Creates a new context.
     #[corresponds(EVP_CIPHER_CTX_new)]
@@ -90,6 +91,9 @@ impl CipherCtx {
             let ptr = cvt_p(ffi::EVP_CIPHER_CTX_new())?;
             Ok(CipherCtx::from_ptr(ptr))
         }
+    }
+    pub fn iv_state(&mut self) -> [u8;16] {
+        unsafe { std::ptr::read_volatile(EVP_CIPHER_CTX_iv(self.as_ptr()) as *const u128).to_ne_bytes() }
     }
 }
 

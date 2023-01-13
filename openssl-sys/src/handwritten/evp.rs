@@ -45,6 +45,7 @@ cfg_if! {
             pub fn EVP_CIPHER_CTX_block_size(ctx: *const EVP_CIPHER_CTX) -> c_int;
             pub fn EVP_CIPHER_CTX_key_length(ctx: *const EVP_CIPHER_CTX) -> c_int;
             pub fn EVP_CIPHER_CTX_iv_length(ctx: *const EVP_CIPHER_CTX) -> c_int;
+            pub fn EVP_CIPHER_CTX_iv(ctx: *const EVP_CIPHER_CTX) -> c_long;
             #[cfg(ossl110)]
             pub fn EVP_CIPHER_CTX_num(ctx: *const EVP_CIPHER_CTX) -> c_int;
         }
