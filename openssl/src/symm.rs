@@ -478,7 +478,7 @@ unsafe impl Send for Cipher {}
 /// assert_eq!(b"Some Stream of Crypto Text", &plaintext[..]);
 /// ```
 pub struct Crypter {
-    ctx: CipherCtx,
+    pub ctx: CipherCtx,
 }
 
 impl Crypter {
